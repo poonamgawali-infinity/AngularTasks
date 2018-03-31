@@ -1,0 +1,38 @@
+<div>
+
+    <form (ngSubmit)="onSubmit()" [formGroup]="form">
+    <mat-accordion>
+              
+        <div *ngFor="let datas of formData" class="form-row">
+
+            <mat-expansion-panel>
+                <mat-expansion-panel-header> 
+
+        <mat-panel-title>
+            {{datas.key}}
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <!-- {{datas.children | json}} -->   
+      <label>
+        <!-- {{datas.key | json}} -->
+      </label>
+      <div *ngFor="let data of datas['children']">
+          <!-- {{data | json}} -->
+          <app-dynamic-form-question [data1]="datas.key"  [data]="data" [form]="form"></app-dynamic-form-question>
+      </div>
+
+    
+  </mat-expansion-panel>
+    </div>
+  
+    <br>
+    <div class="form-row">
+      <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Save</button>
+    </div>
+</mat-accordion>
+</form>
+
+  <div *ngIf="payLoad" class="form-row">
+    <strong>Saved the following values</strong><br>{{payLoad | json}}
+  </div>
+</div>

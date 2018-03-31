@@ -1,0 +1,45 @@
+<div [formGroup]="form">
+    <label [attr.for]="data1">
+      <!-- {{data1}} -->
+    </label>
+  <!-- <label [attr.for]="data.name" >{{data.title}}</label> -->
+  <!-- {{data |json}} -->
+  <div [ngSwitch]="data.controlType">
+    <div *ngSwitchCase="data.controlType">
+
+        <mat-form-field *ngIf="data.controlType=='textbox'">
+            <input matInput  [type]="data.controlType" 
+            [formControlName]="data1+'_'+data.name"
+            [placeholder]="data.name"
+            > 
+        </mat-form-field>
+
+        <mat-form-field *ngIf="data.controlType=='number'">
+            <input matInput  [type]="data.controlType" 
+            [formControlName]="data1+'_'+data.name"
+            [placeholder]="data.name"
+            > 
+        </mat-form-field>
+
+    <mat-form-field *ngIf="data.controlType=='password'">
+        <input matInput [type]="data.controlType"
+         [formControlName]="data1+'_'+data.name"
+         [placeholder]="data.name" >
+    </mat-form-field>
+
+        <mat-form-field *ngIf="data.controlType=='select'">
+            <mat-select [formControlName]="data1+'_'+data.name">
+                <mat-option *ngFor="let op of data.options" [value]="ObjectKeys(op)[0]">
+                    {{op[ObjectKeys(op)[0]]}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+            
+        
+
+    </div>
+  </div> 
+
+  <!-- <div class="errorMessage" *ngIf="!isValid">{{data.name}} is required</div> -->
+
+</div>
