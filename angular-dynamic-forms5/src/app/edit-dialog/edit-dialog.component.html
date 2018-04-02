@@ -1,0 +1,23 @@
+<form [formGroup]="form" (ngSubmit)="onNoClick()">
+<div class="example-container">
+    <!-- <mat-form-field>
+      <input matInput placeholder="Id"  formControlName="id">
+    </mat-form-field>
+    <br> -->
+    <mat-form-field>
+      <input matInput placeholder="First Name" formControlName="first_name">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <input matInput placeholder="Last Name" formControlName="last_name">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+        <input matInput placeholder="Avatar" formControlName="avatar">
+    </mat-form-field>
+    <!-- <img src="{{data.avatar}}" alt="Smiley face" height="1%" width="15%" formControlName="avatar"> -->
+  </div>
+  <br><br>
+  {{form.value | json}}
+  <button type="submit" mat-raised-button color="primary">Ok</button>
+</form>

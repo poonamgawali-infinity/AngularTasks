@@ -1,0 +1,23 @@
+<div class="example-container">
+  <form [formGroup]="form" enctype="multipart/form-data"> 
+          <mat-form-field>
+            <input matInput placeholder="First Name" formControlName="first_name">
+            <mat-error *ngIf="form.controls['first_name'].hasError('required')">First Name is required</mat-error>
+          </mat-form-field>
+          <br>
+          <mat-form-field>
+                <input matInput placeholder="Last Name" formControlName="last_name">
+                <mat-error *ngIf="form.controls['last_name'].hasError('required')">Last Name is required</mat-error>
+          </mat-form-field>
+          <br>
+          <!-- <input type="file" (change)="fileChangeEvent($event)" placeholder="Upload file..." /> -->
+                <!-- <input matInput placeholder="Avatar" formControlName="avatar"> -->
+                <!-- <input type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".pdf,.doc,.docx"> -->
+                <!-- <input type="file" (change)="upload($event)" #fileInput placeholder="Upload file..." formControlName="fileInput" /> -->
+                <input type="file" name="avatar" id="fileToUpload" (change)="fileEvent($event)">
+                
+          <br>
+          <button mat-button color="primary" *ngIf="form.valid"  (click)="onNoClick()">Ok</button>
+  <!-- {{form.value | json}} -->
+        </form>
+</div>

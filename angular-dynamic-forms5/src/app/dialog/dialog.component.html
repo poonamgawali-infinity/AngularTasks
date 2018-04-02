@@ -1,0 +1,18 @@
+
+<div class="example-container">
+    <mat-form-field>
+      <input matInput placeholder="Id" [value]="data.id" disabled>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <input matInput placeholder="First Name" [value]="data.first_name" disabled>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <input matInput placeholder="Last Name" [value]="data.last_name" disabled>
+    </mat-form-field>
+    <br>
+    <img src="{{data.avatar}}" alt="Smiley face" height="1%" width="15%">
+  </div><br>
+  <button mat-raised-button color="primary" (click)="onNoClick()">Ok</button>
+ 

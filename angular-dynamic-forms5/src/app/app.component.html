@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body style="margin-top:50px;">
+<div class="fluid container">
+<div class="well">
+  <div class="form">
+    <mat-form-field>
+      <input matInput #filter (keyup)="applyFilter($event.target.value)" placeholder="Firstname">
+    </mat-form-field>
+    <input
+    (keyup)="searchTerm$.next($event.target.value)">
+  </div> 
+<div class="example-container mat-elevation-z8">
+  <mat-table #table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)">
+
+    <!-- Id Column -->
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> ID. </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+    </ng-container>
+
+    <!--First Name Column -->
+    <ng-container matColumnDef="first_name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>First Name </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.first_name}} </mat-cell>
+    </ng-container>
+
+    <!--Last Column -->
+    <ng-container matColumnDef="last_name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Last Name </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.last_name}} </mat-cell>
+    </ng-container>
+
+
+    <!--Avatar Column -->
+    <ng-container matColumnDef="avatar">
+      <mat-header-cell *matHeaderCellDef> Avatar </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+          <img src="{{element.avatar}}" alt="Smiley face" height="92" width="92">
+      </mat-cell>
+    </ng-container>
+
+    <!--Actions Column -->
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef> Actions &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <button mat-icon-button color="primary" (click)="add()"><mat-icon>add</mat-icon></button>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element"> 
+          <mat-icon color="primary" (click)="edit(element)">edit</mat-icon>
+          <mat-icon color="primary" (click)="delete(element)">delete</mat-icon>
+          <mat-icon color="primary" (click)="openDialog1(element)">visibility</mat-icon>
+         </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>
+
+<mat-paginator #paginator [length]="length"
+[pageSize]="pageSize"
+[pageSizeOptions]="pageSizeOptions" 
+(page)="loadData($event)"
+[showFirstLastButtons]="true">
+</mat-paginator>
+ 
+</div>
+</div>
+</body>
+</html>
+
+
+
+<!-- <table class="table"  matSort>
+	<tr>
+		<th>Id</th>
+		<th>First Name</th>
+		<th>Last Name</th>
+		<th>Avatar</th>
+		<th>Action &nbsp;&nbsp;
+        <button mat-icon-button color="primary" (click)="openDialog()"><mat-icon>add</mat-icon></button>
+    </th>
+  </tr>
+    <tr  *ngFor="let data of dataSource['data'];let i=index">
+      <td>{{data.id}}</td>
+      <td>{{data.first_name}}</td>
+      <td>{{data.last_name}}</td>
+      <td><img src="{{data.avatar}}" alt="Smiley face" height="92" width="92"></td>
+      <td> 
+        <mat-icon color="primary" (click)="edit(data)">edit</mat-icon>
+        <mat-icon color="primary" (click)="delete(data)">delete</mat-icon>
+        <mat-icon color="primary" (click)="openDialog1(data)">visibility</mat-icon>
+      </td>
+  </tr>
+</table> -->
